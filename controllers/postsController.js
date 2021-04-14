@@ -20,6 +20,11 @@ const postsController = {
         const {id} = req.params;
         const postDeletado = await Post.destroy({where: {id}});
         return res.json(postDeletado);
+    },
+    show: async (req,res) => {
+        const {usuarios_id} = req.params;
+        const posts = await Post.findAll({where: {usuarios_id}});
+        return res.json(posts);
     }
         
 }
