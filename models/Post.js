@@ -22,6 +22,8 @@ module.exports = (sequelize, DataTypes) => {
             otherKey: "usuarios_id",
             timestamps: false
         });
+
+        Post.hasMany(models.Comentario, { as: "comentarios", foreignKey: "posts_id" });
     }
     
     return Post;
