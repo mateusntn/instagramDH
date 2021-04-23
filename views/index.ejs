@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet"> 
+    <title>Página inicial</title>
+</head>
+<body>
+
+    <% for(post of listaPosts) { %>
+        <article class="post">
+            <header>
+                <div class="user">
+                    <img src="./img/avatar-example.png" class="user-photo" alt="Foto do usuário">
+                    <p><%= post.usuario.nome %> </p>
+                </div>
+                <img src="img/icons/more-vertical.svg" alt="Mais opções">
+            </header>
+            <main>
+                <img src=<%= post.img %> class="post-photo" alt="Foto da publicação">
+
+                <div class="detalhes">
+                    <img src="img/icons/heart.svg" alt="Curtidas">
+                    <p>Liked by <strong></strong> and <strong><%= post.n_likes %> other</strong></p>
+                    <p><strong> <%= post.usuario.nome %></strong> <%= post.texto %> </p>
+                </div>
+            </main>
+            <section>
+                <ul>
+                    <% for(comentario of post.comentarios) { %>
+                        <p><%= comentario.texto %></p>
+                    <% } %>
+                </ul>
+            </section>
+            <footer>
+                <input type="text" name="comentario" id="comentario" placeholder="Adicione um comentário">
+                <button type="submit">Publicar</button>
+            </footer>
+        </article>
+        <% } %>
+</body>
 </html>
