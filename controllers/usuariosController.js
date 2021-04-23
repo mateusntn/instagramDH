@@ -3,13 +3,22 @@ const { Usuario, sequelize} = require('../models/');
 const usuariosController = {
     index: async (req, res) => {
         const usuarios = await Usuario.findAll();
-        return res.json(usuarios);
+        return res.render('usuarios', {listarUsuarios: usuarios});
+    },
+
+    registro: (req, res) => {
+        return res.render('registro');
+    },
+
+    login: (req, res) => {
+        return res.render('login');
     },
 
     create: async (req, res) => {
         const { nome, email, senha } = req.body;
         const novoUsuario = await Usuario.create({nome, email, senha});
-        return res.json(novoUsuario);
+        
+        return res.redirect('/usuarios/login')
     },
 
     update: async (req, res) => {
